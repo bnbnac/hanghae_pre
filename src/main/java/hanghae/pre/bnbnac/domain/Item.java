@@ -1,4 +1,4 @@
-package hanghae.pre.bnbnac.entity;
+package hanghae.pre.bnbnac.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,16 +22,28 @@ public class Item {
 
     private String content;
 
-    private int price;
+    private Integer price;
 
     private String username;
 
     @Builder
-    public Item(String title, String content, int price, String username) {
+    public Item(String title, String content, Integer price, String username) {
         this.title = title;
         this.content = content;
         this.price = price;
         this.username = username;
     }
 
+    public ItemEditor.ItemEditorBuilder toEditorBuilder() {
+        return ItemEditor.builder()
+                .content(content)
+                .title(title)
+                .price(price);
+    }
+
+    public void edit(ItemEditor itemEditor) {
+        this.title = itemEditor.getTitle();
+        this.content = itemEditor.getContent();
+        this.price = itemEditor.getPrice();
+    }
 }
