@@ -7,7 +7,6 @@ import hanghae.pre.bnbnac.request.EditItem;
 import hanghae.pre.bnbnac.request.PostItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -54,5 +53,11 @@ public class ItemService {
                 .title(editItem.getTitle())
                 .price(editItem.getPrice())
                 .build();
+    }
+
+    public void deleteItem(Long id) {
+        Item item = findItem(id);
+
+        itemRepository.delete(item);
     }
 }

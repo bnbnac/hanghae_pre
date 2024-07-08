@@ -5,6 +5,8 @@ import hanghae.pre.bnbnac.request.EditItem;
 import hanghae.pre.bnbnac.request.PostItem;
 import hanghae.pre.bnbnac.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +30,11 @@ public class ItemController {
     @PutMapping("/post/{id}")
     public Item editItem(@PathVariable Long id, @RequestBody EditItem editItem) {
         return itemService.editItem(id, editItem);
+    }
+
+    @DeleteMapping("/post/{id}")
+    public ResponseEntity<String> deleteItem(@PathVariable Long id) {
+        itemService.deleteItem(id);
+        return ResponseEntity.status(HttpStatus.OK).body("{\"msg\": \"삭제완료\"}");
     }
 }
