@@ -8,11 +8,13 @@ public class ItemEditor {
     private final String title;
     private final String content;
     private final Integer price;
+    private final String username;
 
-    private ItemEditor(String title, String content, Integer price) {
+    private ItemEditor(String title, String content, Integer price, String username) {
         this.title = title;
         this.content = content;
         this.price = price;
+        this.username = username;
     }
 
     public static ItemEditorBuilder builder() {
@@ -24,6 +26,7 @@ public class ItemEditor {
         private String title;
         private String content;
         private Integer price;
+        private String username;
 
         ItemEditorBuilder() {}
 
@@ -48,8 +51,15 @@ public class ItemEditor {
             return this;
         }
 
+        public ItemEditorBuilder username(String username) {
+            if (username != null) {
+                this.username = username;
+            }
+            return this;
+        }
+
         public ItemEditor build() {
-            return new ItemEditor(title, content, price);
+            return new ItemEditor(title, content, price, username);
         }
 
     }

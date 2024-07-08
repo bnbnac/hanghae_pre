@@ -38,6 +38,7 @@ public class Item {
         return ItemEditor.builder()
                 .content(content)
                 .title(title)
+                .username(username)
                 .price(price);
     }
 
@@ -45,5 +46,6 @@ public class Item {
         this.title = itemEditor.getTitle();
         this.content = itemEditor.getContent();
         this.price = itemEditor.getPrice();
+        this.username = itemEditor.getUsername();
     }
 }

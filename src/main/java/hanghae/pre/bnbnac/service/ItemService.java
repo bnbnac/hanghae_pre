@@ -52,6 +52,7 @@ public class ItemService {
                 .content(editItem.getContent())
                 .title(editItem.getTitle())
                 .price(editItem.getPrice())
+                .username(editItem.getUsername())
                 .build();
     }
 
