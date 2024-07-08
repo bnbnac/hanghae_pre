@@ -6,6 +6,8 @@ import hanghae.pre.bnbnac.request.PostItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ItemService {
@@ -25,5 +27,9 @@ public class ItemService {
                 .content(postItem.getContent())
                 .username(postItem.getUsername())
                 .build();
+    }
+
+    public List<Item> getItems() {
+        return itemRepository.findAll();
     }
 }
