@@ -6,6 +6,7 @@ import hanghae.pre.bnbnac.exception.ItemNotFound;
 import hanghae.pre.bnbnac.repository.ItemRepository;
 import hanghae.pre.bnbnac.request.EditItem;
 import hanghae.pre.bnbnac.request.PostItem;
+import hanghae.pre.bnbnac.response.SimpleMsgResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -57,9 +58,10 @@ public class ItemService {
                 .build();
     }
 
-    public void deleteItem(Long id) {
+    public SimpleMsgResponse deleteItem(Long id) {
         Item item = findItem(id);
 
         itemRepository.delete(item);
+        return new SimpleMsgResponse("삭제완료");
     }
 }

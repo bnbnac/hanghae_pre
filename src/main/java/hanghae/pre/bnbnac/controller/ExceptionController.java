@@ -1,6 +1,6 @@
 package hanghae.pre.bnbnac.controller;
 
-import hanghae.pre.bnbnac.exception.ExceptionResponse;
+import hanghae.pre.bnbnac.response.ExceptionResponse;
 import hanghae.pre.bnbnac.exception.ItemNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,11 @@ public class ExceptionController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ExceptionResponse> handleItemNotFoundException(ItemNotFound ex) {
 
-        ExceptionResponse errorResponse = new ExceptionResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+        ExceptionResponse errorResponse = ExceptionResponse.builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .message(ex.getMessage())
+                .build();
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 
     }
