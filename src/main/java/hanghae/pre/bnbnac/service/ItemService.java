@@ -2,6 +2,7 @@ package hanghae.pre.bnbnac.service;
 
 import hanghae.pre.bnbnac.domain.Item;
 import hanghae.pre.bnbnac.domain.ItemEditor;
+import hanghae.pre.bnbnac.exception.ItemNotFound;
 import hanghae.pre.bnbnac.repository.ItemRepository;
 import hanghae.pre.bnbnac.request.EditItem;
 import hanghae.pre.bnbnac.request.PostItem;
@@ -44,7 +45,7 @@ public class ItemService {
     }
 
     private Item findItem(Long id) {
-        return itemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 아이템입니다"));
+        return itemRepository.findById(id).orElseThrow(() -> new ItemNotFound(id));
     }
 
     private ItemEditor createEditor(EditItem editItem, Item item) {
